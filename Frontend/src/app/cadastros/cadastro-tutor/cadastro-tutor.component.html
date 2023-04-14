@@ -1,0 +1,118 @@
+
+<div class="container">
+  <mat-card>
+  <form [formGroup]="registerTutor" >
+    <div class="row">
+      <div class="col-md-6">
+        <input [hidden]="true" id="input-file-id" multiple type="file" formControlName="avatar" />
+        <label for="input-file-id" class="btn btn-primary mb-3" style="cursor: pointer; width: 100%;">Escolher Imagem</label>
+      </div>
+      <div class="col-md-6">
+
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label>Nome Usuário</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label>Documento (CPF)</mat-label>
+        <input id='document' matInput type="text" formControlName="document" required>
+        <mat-error *ngIf="tutorErrors['document']">
+          <p [innerHTML]="displayMessage['document']"></p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="tutorErrors.email">
+          <p [innerHTML]="displayMessage['email']"></p>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div *ngIf="user === 'tutor'" class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label>Descrição</mat-label>
+        <textarea id='description' formControlName="description" matInput placeholder="Ex. sou feliz e divertido"></textarea>
+      </mat-form-field>
+    </div>
+    <div *ngIf="user === 'vet'" class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label>CRMV</mat-label>
+        <input id='crmv' formControlName="crmv" matInput/>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label> Logradouro </mat-label>
+        <input matInput formControlName="street">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label>Número</mat-label>
+        <input matInput formControlName="number">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label> Bairro </mat-label>
+        <input matInput formControlName="neighborhood">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label>CEP</mat-label>
+        <input matInput formControlName="zip_code">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="standard">
+        <mat-label> Cidade </mat-label>
+        <input matInput formControlName="city">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="fill">
+        <mat-label>UF</mat-label>
+        <mat-select formControlName="state">
+          <mat-option *ngFor="let state of states"  value="{{state.nome}}"> {{state.nome}} - {{state.sigla}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row mt-1">
+    <div class="col-md-12"  style="text-align: end;" >
+      <button style="width: 100%;" type="submit" [disabled]="!registerTutor.valid" mat-raised-button (click)="postUser()" > Enviar </button>
+    </div>
+  </div>
+</form>
+</mat-card>
+
+
+<div class="row mt-5">
+  <img style="width:100px" src="{{baseUrl}}/tutor/image/1662132979847.jpeg" alt="">
+</div>
+
+</div>
+
+
+
+
+
+
